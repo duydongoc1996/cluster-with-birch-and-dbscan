@@ -14,6 +14,7 @@ from sklearn.preprocessing import StandardScaler
 from typing import Tuple, Dict, List
 
 
+
 ### GENERATE DATA
 def generate_data(num_records):
 	centers = [[1, 1], [-1, -1], [1, -1],[0, 0],[-1.5, 1]]
@@ -101,6 +102,12 @@ predictions = np.array(birch.predict(data))
 
 # Number of clusters in labels, ignoring noise if present.
 labels = birch.labels_
+
+
+
+# Adjusted Rand Index
+print("Adjusted Rand Index: %0.3f"
+      % metrics.adjusted_rand_score(labels_true, labels))
 
 
 
