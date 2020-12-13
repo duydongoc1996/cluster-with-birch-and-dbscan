@@ -18,7 +18,7 @@ from typing import Tuple, Dict, List
 ### GENERATE DATA
 def generate_data(num_records):
 	centers = [[1, 1], [-1, -1], [1, -1],[0, 0],[-1.5, 1]]
-	X, labels_true = make_blobs(n_samples=num_records, centers=centers, cluster_std=0.4, random_state=0)
+	X, labels_true = make_blobs(n_samples=num_records, centers=centers, cluster_std=1.5, random_state=0)
 	X = StandardScaler().fit_transform(X)
 	return X, labels_true
 
@@ -90,8 +90,8 @@ print(list_noises)
 print("--->Computing clusters ... ")
 birch = Birch(
     branching_factor=50,
-    n_clusters=6,
-    threshold=0.5,
+    n_clusters=5,
+    threshold=0.7,
     copy=True,
     compute_labels=True
 )
