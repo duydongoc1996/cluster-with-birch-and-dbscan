@@ -17,8 +17,8 @@ from typing import Tuple, Dict, List
 
 ### GENERATE DATA
 def generate_data(num_records):
-	centers = [[1, 1], [-1, -1], [1, -1],[0, 0],[-1.5, 1]]
-	X, labels_true = make_blobs(n_samples=num_records, centers=centers, cluster_std=1.5, random_state=0)
+	centers = [[1, 1], [-1, -1], [1, -1],[-0.25, 0],[-1.5, 1]]
+	X, labels_true = make_blobs(n_samples=num_records, centers=centers, cluster_std=0.4, random_state=0)
 	X = StandardScaler().fit_transform(X)
 	return X, labels_true
 
@@ -80,6 +80,10 @@ def show_results(data: np.ndarray, labels: np.ndarray, plot_handler = "seaborn",
 ### MAIN
 data, labels_true = generate_data(300) 
 
+# show data with true label
+show_results(data, labels_true)
+
+
 data_after_remove_noises, list_noises = remove_noises_uses_dbscan(data)
 
 # data = data_after_remove_noises
@@ -91,7 +95,7 @@ print("--->Computing clusters ... ")
 birch = Birch(
     branching_factor=50,
     n_clusters=5,
-    threshold=0.7,
+    threshold=0.6,
     copy=True,
     compute_labels=True
 )
